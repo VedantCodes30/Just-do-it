@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JUST DO IT.
 
-## Getting Started
+A gamified, streak-driven, daily challenge system with a bold **Neo-Brutalist** personality.
+Stop making excuses. Start getting things done.
 
-First, run the development server:
+![Project Status](https://img.shields.io/badge/status-active-success.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+## 🔥 Core Concept
+
+**JUST DO IT.** is a productivity app that treats your life like a video game.
+
+- **Missions** = Tasks
+- **XP** = Completed work
+- **Levels** = Consistency
+- **Streaks** = Discipline
+
+The design is **Neo-Brutalist**: bold, high-contrast, energetic, and unapologetic. No soft shadows. No cute gradients.
+
+## ⚡ Tech Stack
+
+Built with modern web technologies for speed and performance:
+
+- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Custom Theme & Utilities)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) (Persisted to LocalStorage)
+- **Animations**: [GSAP](https://gsap.com/) (GreenSock Animation Platform)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: TypeScript
+
+## 🎮 Features
+
+- **Mission Protocol**: Create tasks with difficulty ratings (Easy, Medium, Hard).
+- **XP System**: Earn XP for every completed mission.
+- **Level Up**: Visual progress bar showing your journey to the next level.
+- **Streak Tracker**: Don't break the chain.
+- **Daily Protocol**: Auto-generated daily challenges to keep you on your toes.
+- **Brutal UI**: Custom components with hard edges, thick borders, and physical interactions.
+
+## 🚀 Getting Started
+
+Follow these steps to set up the project locally.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/vedantcodes30/just-do-it.git
+cd just-do-it
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── layout.tsx       # Root layout with fonts & metadata
+│   ├── page.tsx         # Main Dashboard
+│   └── globals.css      # Tailwind v4 Theme & Utilities
+├── components/
+│   ├── ui/              # Reusable Neo-Brutalist components (Button, Card, Input)
+│   ├── Header.tsx       # User Stats (XP, Level, Streak)
+│   ├── MissionItem.tsx  # Task logic
+│   └── ...
+└── store/
+    ├── useMissionStore.ts # Task state & persistence
+    └── useUserStore.ts    # User stats state & persistence
+```
 
-## Learn More
+## 🤝 Contribution
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**NO EXCUSES.**
