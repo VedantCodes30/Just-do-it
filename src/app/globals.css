@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-main: #facc15;
+  --color-secondary: #2563eb;
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+
+  --shadow-brutal: 8px 8px 0px 0px #000000;
+  --shadow-brutal-sm: 4px 4px 0px 0px #000000;
+
+  --font-sans: var(--font-inter), sans-serif;
+  --font-heading: var(--font-space-grotesk), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom Utilities */
+@utility brutal-border {
+  border: 3px solid black;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility brutal-shadow {
+  box-shadow: var(--shadow-brutal);
+}
+
+@utility brutal-card {
+  @apply bg-white border-[3px] border-black shadow-[var(--shadow-brutal)];
+}
+
+@utility brutal-btn {
+  @apply bg-[var(--color-main)] text-black font-bold py-3 px-6 border-[3px] border-black shadow-[var(--shadow-brutal-sm)] uppercase tracking-wide transition-all cursor-pointer;
+
+  &:hover {
+    @apply translate-x-[2px] translate-y-[2px] shadow-[2px_2px_0px_0px_#000000];
+  }
+
+  &:active {
+    @apply translate-x-[4px] translate-y-[4px] shadow-none;
   }
 }
 
+@utility brutal-input {
+  @apply w-full p-3 border-[3px] border-black bg-white focus:outline-none focus:ring-4 focus:ring-black/20 font-medium;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  color: black;
+  font-family: var(--font-sans);
 }
