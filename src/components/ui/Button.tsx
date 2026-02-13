@@ -1,37 +1,41 @@
+import React from "react";
 import { clsx } from "clsx";
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import { twMerge } from "tailwind-merge";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "danger" | "success" | "outline";
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary" | "danger";
   size?: "sm" | "md" | "lg";
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "primary", size = "md", ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={clsx(
-          "brutal-btn flex items-center justify-center gap-2",
-          {
-            "bg-[var(--color-main)]": variant === "primary",
-            "bg-[var(--color-secondary)] text-white": variant === "secondary",
-            "bg-[var(--color-danger)] text-white": variant === "danger",
-            "bg-[var(--color-success)]": variant === "success",
-            "bg-white text-black border-3 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none":
-              variant === "outline",
-            "text-sm py-2 px-4 shadow-[3px_3px_0px_0px_#000000]": size === "sm",
-            "text-base py-3 px-6": size === "md",
-            "text-lg py-4 px-8 shadow-[6px_6px_0px_0px_#000000]": size === "lg",
-          },
-          className,
-        )}
-        {...props}
-      />
-    );
-  },
-);
+export function Button({
+  className,
+  variant = "primary",
+  size = "md",
+  ...props
+}: ButtonProps) {
+  const baseStyles =
+    "inline-flex items-center justify-center rounded-full font-bold transition-all disabled:opacity-50 disabled:pointer-events-none active:scale-95";
 
-Button.displayName = "Button";
+  const variants = {
+    primary:
+      "bg-orange-gradient text-white shadow-lg hover:shadow-orange-500/20 hover:scale-105",
+    secondary:
+      "bg-transparent border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/40",
+    danger: "bg-red-600 text-white hover:bg-red-700",
+  };
 
-export { Button };
+  const sizes = {
+    sm: "gap-2 px-4 py-2 text-sm",
+    md: "gap-2 px-6 py-3 text-base",
+    lg: "gap-3 px-8 py-4 text-lg",
+  };
+
+  return (
+    <button
+      className={twMerge(
+        clsx(baseStyles, variants[variant], sizes[size], className),
+      )}
+      {...props}
+    />
+  );
+}

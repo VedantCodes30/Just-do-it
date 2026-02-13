@@ -1,29 +1,30 @@
+import React from "react";
 import { clsx } from "clsx";
-import { HTMLAttributes, forwardRef } from "react";
+import { twMerge } from "tailwind-merge";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  hoverEffect?: boolean;
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: "default" | "highlight";
 }
 
-const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, hoverEffect = false, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          "brutal-card p-6",
-          {
-            "transition-all hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]":
-              hoverEffect,
-          },
-          className,
-        )}
-        {...props}
-      />
-    );
-  },
-);
+export function Card({
+  className,
+  variant = "default",
+  children,
+  ...props
+}: CardProps) {
+  const baseStyles = "rounded-3xl p-6 transition-all";
 
-Card.displayName = "Card";
+  const variants = {
+    default: "bg-[var(--color-brand-surface)] border border-white/5 shadow-2xl",
+    highlight: "bg-orange-gradient text-white shadow-orange-500/20 shadow-xl",
+  };
 
-export { Card };
+  return (
+    <div
+      className={twMerge(clsx(baseStyles, variants[variant], className))}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}

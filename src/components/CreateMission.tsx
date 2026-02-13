@@ -29,8 +29,8 @@ export function CreateMission() {
   };
 
   return (
-    <Card className="mb-8 p-6 bg-yellow-50 border-3 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-      <h3 className="font-heading font-bold text-xl uppercase mb-4">
+    <Card className="mb-8">
+      <h3 className="font-bold text-xl mb-4 text-white">
         New Mission Protocol
       </h3>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -38,21 +38,26 @@ export function CreateMission() {
           placeholder="ENTER MISSION OBJECTIVE..."
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="uppercase font-bold tracking-wide"
+          className="font-medium tracking-wide"
         />
 
         <div className="flex gap-4">
-          <select
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value as any)}
-            className="brutal-input flex-1 uppercase font-bold"
-          >
-            <option value="Easy">Easy (10 XP)</option>
-            <option value="Medium">Medium (20 XP)</option>
-            <option value="Hard">Hard (50 XP)</option>
-          </select>
+          <div className="relative flex-1">
+            <select
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value as any)}
+              className="w-full p-4 rounded-2xl bg-[var(--color-brand-surface)] text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-orange)] transition-all appearance-none font-bold"
+            >
+              <option value="Easy">Easy (10 XP)</option>
+              <option value="Medium">Medium (20 XP)</option>
+              <option value="Hard">Hard (50 XP)</option>
+            </select>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/50">
+              ▼
+            </div>
+          </div>
 
-          <Button type="submit" className="flex-1">
+          <Button type="submit" className="flex-1" variant="primary">
             <Plus className="w-5 h-5" />
             INITIATE
           </Button>

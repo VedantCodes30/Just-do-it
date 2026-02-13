@@ -8,10 +8,10 @@ import { useMissionStore } from "@/store/useMissionStore";
 import { useUserStore } from "@/store/useUserStore";
 import { useEffect, useState } from "react";
 import gsap from "gsap";
+import { Card } from "@/components/ui/Card";
 
 export default function Home() {
   const { missions } = useMissionStore();
-  const { streak } = useUserStore();
 
   // Hydration fix for zustand persist
   const [mounted, setMounted] = useState(false);
@@ -35,48 +35,53 @@ export default function Home() {
   const completedMissions = missions.filter((m) => m.completed);
 
   return (
-    <main className="min-h-screen bg-gray-100 p-4 md:p-8 font-sans pb-20">
-      <div className="max-w-2xl mx-auto">
-        <Header />
+    <main className="min-h-screen p-4 md:p-8 font-sans pb-20 max-w-lg mx-auto">
+      <Header />
 
-        <DailyChallenges />
+      <DailyChallenges />
 
-        <CreateMission />
+      <CreateMission />
 
-        <div className="space-y-6">
-          <div>
-            <h2 className="font-heading font-black text-3xl mb-4 uppercase tracking-tighter flex items-center gap-2">
-              <span className="bg-black text-white px-2">Active</span>
-              <span>Missions</span>
-            </h2>
-            <div className="flex flex-col gap-4 mission-list">
-              {activeMissions.length === 0 ? (
-                <div className="text-center p-8 border-3 border-black bg-white border-dashed text-gray-500 font-bold uppercase">
-                  No active missions. Stay hard.
+      <div className="space-y-8">
+        <div>
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
+            <span className="w-2 h-8 bg-orange-gradient rounded-full"></span>
+            ACTIVE{" "}
+            <span className="serif-accent bg-clip-text text-transparent bg-gradient-to-r from-white to-white/50">
+              Missions
+            </span>
+          </h2>
+          <div className="flex flex-col gap-4 mission-list">
+            {activeMissions.length === 0 ? (
+              <Card className="text-center p-12 bg-[var(--color-brand-surface)]/50 border border-dashed border-white/10 text-[var(--color-brand-muted)] font-medium">
+                No active missions. <br />{" "}
+                <span className="text-white font-bold mt-2 block">
+                  Stay hard.
+                </span>
+              </Card>
+            ) : (
+              activeMissions.map((mission) => (
+                <div key={mission.id} className="mission-item">
+                  <MissionItem mission={mission} />
                 </div>
-              ) : (
-                activeMissions.map((mission) => (
-                  <div key={mission.id} className="mission-item">
-                    <MissionItem mission={mission} />
-                  </div>
-                ))
-              )}
+              ))
+            )}
+          </div>
+        </div>
+
+        {completedMissions.length > 0 && (
+          <div className="opacity-60 hover:opacity-100 transition-opacity">
+            <h2 className="text-xl font-bold mb-6 text-[var(--color-brand-muted)] flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-[var(--color-brand-muted)]"></span>
+              COMPLETED LOG
+            </h2>
+            <div className="flex flex-col gap-4">
+              {completedMissions.map((mission) => (
+                <MissionItem key={mission.id} mission={mission} />
+              ))}
             </div>
           </div>
-
-          {completedMissions.length > 0 && (
-            <div className="opacity-60 hover:opacity-100 transition-opacity">
-              <h2 className="font-heading font-black text-2xl mb-4 uppercase tracking-tighter text-gray-600 mt-8">
-                Completed Log
-              </h2>
-              <div className="flex flex-col gap-4">
-                {completedMissions.map((mission) => (
-                  <MissionItem key={mission.id} mission={mission} />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </main>
   );

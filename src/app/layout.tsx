@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { clsx } from "clsx";
 
@@ -8,8 +8,8 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
 });
 
@@ -28,8 +28,8 @@ export default function RootLayout({
       <body
         className={clsx(
           inter.variable,
-          spaceGrotesk.variable,
-          "antialiased bg-white text-black min-h-screen font-sans",
+          playfair.variable,
+          "antialiased bg-black text-white min-h-screen font-sans",
         )}
       >
         {children}

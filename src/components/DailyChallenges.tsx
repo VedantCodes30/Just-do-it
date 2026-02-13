@@ -1,5 +1,5 @@
 import { Card } from "./ui/Card";
-import { CheckCircle2 } from "lucide-react";
+import { Circle } from "lucide-react"; // Import Circle
 
 const CALLS_TO_ACTION = [
   "Complete 3 missions",
@@ -15,23 +15,26 @@ export function DailyChallenges() {
   const challenges = CALLS_TO_ACTION.slice(0, 3);
 
   return (
-    <Card className="mb-8 p-6 bg-black text-white border-3 border-black shadow-[8px_8px_0px_0px_rgba(100,100,100,1)]">
-      <h3 className="font-heading font-black text-2xl uppercase mb-4 text-yellow-400 tracking-wider">
-        Daily Protocol
+    <Card className="mb-8">
+      <h3 className="font-bold text-xl mb-6 text-white tracking-tight flex items-center gap-2">
+        <span className="text-[var(--color-brand-orange)]">DAILY</span> PROTOCOL
       </h3>
-      <ul className="space-y-3">
+      <ul className="space-y-4">
         {challenges.map((challenge, idx) => (
-          <li key={idx} className="flex items-center gap-3">
-            <div className="w-6 h-6 border-2 border-white rounded-none flex items-center justify-center">
-              {/* Placeholder for checked state */}
+          <li
+            key={idx}
+            className="flex items-center gap-4 group cursor-pointer"
+          >
+            <div className="text-white/20 group-hover:text-[var(--color-brand-orange)] transition-colors">
+              <Circle className="w-6 h-6" /> {/* Placeholder for unchecked */}
             </div>
-            <span className="font-bold uppercase tracking-wide text-sm">
+            <span className="font-medium text-[var(--color-brand-text)] group-hover:text-white transition-colors">
               {challenge}
             </span>
           </li>
         ))}
       </ul>
-      <div className="mt-4 text-xs font-mono text-gray-400 uppercase">
+      <div className="mt-6 text-xs font-mono text-[var(--color-brand-muted)] uppercase tracking-widest border-t border-white/10 pt-4">
         Resets in 14:00:00
       </div>
     </Card>
